@@ -2,6 +2,7 @@ import React, { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import HeroScene from "./components/HeroScene.jsx";
 import Polya from "../assets/about/avatar.jpg";
+import { motion } from "framer-motion";
 const projects = [
   {
     id: "quiet-residence",
@@ -48,6 +49,30 @@ const projects = [
     alt: "Премиальный интерьер с панорамными окнами",
   },
 ];
+
+const fadeUp = {
+  hidden: {
+    opacity: 0,
+    y: 80,
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.8,
+      ease: [0.22, 1, 0.36, 1],
+    },
+  },
+};
+
+const stagger = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.15,
+    },
+  },
+};
 
 const filters = [
   { id: "all", label: "Все" },
@@ -128,34 +153,49 @@ function App() {
         <section className="hero" aria-labelledby="hero-title">
           {/* <HeroScene /> */}
           <div className="hero-overlay" />
-          <div className="hero-content">
-            <p className="eyebrow">3D Визуализатор интерьера</p>
-            <h1 id="hero-title">
+          <motion.div
+            className="hero-content"
+            variants={stagger}
+            initial="hidden"
+            animate="visible"
+          >
+            <motion.p variants={fadeUp} className="eyebrow">
+              3D Визуализатор интерьера
+            </motion.p>
+            <motion.h1 variants={fadeUp} id="hero-title">
               Я создаю интерьерные визуализации, которые передают атмосферу еще
               до ремонта.
-            </h1>
-            <p className="hero-copy">
+            </motion.h1>
+            <motion.p variants={fadeUp} className="hero-copy">
               Меня зовут Полина. Я делаю фотореалистичные 3D-рендеры для
               дизайнеров, студий и частных клиентов, чтобы будущий интерьер
               можно было почувствовать до первой стройки.
-            </p>
-            <div className="hero-actions">
+            </motion.p>
+            <motion.div variants={fadeUp} className="hero-actions">
               <a className="button primary" href="#projects">
                 Смотреть портфолио
               </a>
               <a className="button secondary" href="#about">
                 Обо мне
               </a>
-            </div>
-          </div>
-          <div className="hero-stats" aria-label="Ключевые показатели">
+            </motion.div>
+          </motion.div>
+          <motion.div
+            className="hero-stats"
+            initial={{ opacity: 0, y: 60 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{
+              duration: 1,
+              delay: 0.6,
+            }}
+          >
             {stats.map((item) => (
               <div key={item.label}>
                 <strong>{item.value}</strong>
                 <span>{item.label}</span>
               </div>
             ))}
-          </div>
+          </motion.div>
         </section>
 
         <section
@@ -183,20 +223,39 @@ function App() {
           </div>
 
           <div className="projects-grid">
-            {visibleProjects.map((project) => (
-              <Link
-                to={`/project/${project.id}`}
-                className="project-card reveal is-visible"
-                data-category={project.category}
+            {visibleProjects.map((project, index) => (
+              <motion.div
                 key={project.id}
+                initial={{
+                  opacity: 0,
+                  filter: "blur(10px)",
+                }}
+                whileInView={{
+                  opacity: 1,
+                  filter: "blur(0px)",
+                }}
+                viewport={{
+                  once: false,
+                  amount: 0.15,
+                }}
+                transition={{
+                  duration: 0.8,
+                }}
               >
-                <img src={project.image} alt={project.alt} />
-                <div className="project-meta">
-                  <span>{project.label}</span>
-                  <h3>{project.title}</h3>
-                  <p>{project.description}</p>
-                </div>
-              </Link>
+                <Link
+                  to={`/project/${project.id}`}
+                  className="project-card"
+                  data-category={project.category}
+                >
+                  <img src={project.image} alt={project.alt} />
+
+                  <div className="project-meta">
+                    <span>{project.label}</span>
+                    <h3>{project.title}</h3>
+                    <p>{project.description}</p>
+                  </div>
+                </Link>
+              </motion.div>
             ))}
           </div>
         </section>
@@ -206,13 +265,47 @@ function App() {
           className="about section"
           aria-labelledby="about-title"
         >
-          <div className="portrait-panel reveal is-visible">
+          <motion.div
+            className="portrait-panel"
+            initial={{
+              opacity: 0,
+              scale: 0.94,
+            }}
+            whileInView={{
+              opacity: 1,
+              scale: 1,
+            }}
+            viewport={{
+              once: false,
+              amount: 0.2,
+            }}
+            transition={{
+              duration: 1,
+            }}
+          >
             <img
               src={Polya}
               alt="Фрагмент интерьерного мудборда с материалами и тканями"
             />
-          </div>
-          <div className="about-copy reveal is-visible">
+          </motion.div>
+          <motion.div
+            className="about-copy"
+            initial={{
+              opacity: 0,
+              y: 60,
+            }}
+            whileInView={{
+              opacity: 1,
+              y: 0,
+            }}
+            viewport={{
+              once: false,
+              amount: 0.15,
+            }}
+            transition={{
+              duration: 0.8,
+            }}
+          >
             <h2 id="about-title">Превращаю идеи в интерьерные визуализации.</h2>
             <p>
               Я работаю с интерьерными дизайнерами, архитектурными бюро и
@@ -229,7 +322,7 @@ function App() {
                 </div>
               ))}
             </dl>
-          </div>
+          </motion.div>
         </section>
 
         <section
@@ -248,25 +341,58 @@ function App() {
             </p>
           </div>
           <div className="process-steps">
-            {processSteps.map(([number, title, description]) => (
-              <article className="step reveal is-visible" key={number}>
+            {processSteps.map(([number, title, description], index) => (
+              <motion.article
+                className="step"
+                initial={{
+                  opacity: 0,
+                  y: 80,
+                }}
+                whileInView={{
+                  opacity: 1,
+                  y: 0,
+                }}
+                viewport={{
+                  once: false,
+                  amount: 0.2,
+                }}
+                transition={{
+                  duration: 0.8,
+                  delay: index * 0.1,
+                }}
+              >
                 <span>{number}</span>
                 <h3>{title}</h3>
                 <p>{description}</p>
-              </article>
+              </motion.article>
             ))}
           </div>
         </section>
 
-        <section
+        <motion.section
           id="contact"
           className="contact section"
           aria-labelledby="contact-title"
+          initial={{
+            opacity: 0,
+            y: 80,
+          }}
+          whileInView={{
+            opacity: 1,
+            y: 0,
+          }}
+          viewport={{
+            once: false,
+            amount: 0.2,
+          }}
+          transition={{
+            duration: 0.8,
+          }}
         >
           <div>
             <p className="section-kicker">Связаться со мной</p>
             <h2 id="contact-title">
-              Давайте соберем визуализацию, от которой проект хочется купить
+              Давайте соберем визуализацию, от которой проект захочется купить
               сразу.
             </h2>
           </div>
@@ -290,7 +416,7 @@ function App() {
               Max *КЛИК СЮДА*
             </a>
           </div>
-        </section>
+        </motion.section>
       </main>
 
       <footer className="footer">
