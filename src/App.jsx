@@ -86,8 +86,8 @@ function App() {
 
       <header className="site-header">
         <a className="brand" href="#top" aria-label="Polina Studio">
-          <span>Polina</span>
-          <span>3D Interiors</span>
+          <span>Полина</span>
+          <span>3D Визуализатор</span>
         </a>
         <nav className="nav" aria-label="Основная навигация">
           <a href="#projects">Проекты</a>
@@ -102,10 +102,10 @@ function App() {
 
       <main id="top">
         <section className="hero" aria-labelledby="hero-title">
-          <HeroScene />
+          {/* <HeroScene /> */}
           <div className="hero-overlay" />
           <div className="hero-content">
-            <p className="eyebrow">3D visualization for interiors</p>
+            <p className="eyebrow">3D Визуализатор интерьера</p>
             <h1 id="hero-title">Я создаю интерьерные визуализации, которые передают атмосферу еще до ремонта.</h1>
             <p className="hero-copy">
               Меня зовут Полина. Я делаю фотореалистичные 3D-рендеры для дизайнеров,
@@ -131,18 +131,11 @@ function App() {
           </div>
         </section>
 
-        <section className="intro section">
-          <div className="section-kicker">Мой подход</div>
-          <h2>
-            Я собираю визуализации как цифровой шоурум: мягкий свет, дорогие материалы,
-            спокойная композиция и объем в движении.
-          </h2>
-        </section>
 
         <section id="projects" className="section projects-section" aria-labelledby="projects-title">
           <div className="section-heading">
             <div>
-              <p className="section-kicker">Selected works</p>
+              <p className="section-kicker">Примеры работ</p>
               <h2 id="projects-title">Портфолио проектов</h2>
             </div>
             <div className="filter-bar" aria-label="Фильтр проектов">
@@ -172,7 +165,7 @@ function App() {
             ))}
           </div>
         </section>
-
+  
         <section id="about" className="about section" aria-labelledby="about-title">
           <div className="portrait-panel reveal is-visible">
             <img
@@ -181,8 +174,7 @@ function App() {
             />
           </div>
           <div className="about-copy reveal is-visible">
-            <p className="section-kicker">Обо мне</p>
-            <h2 id="about-title">Я перевожу чертежи, референсы и настроение в убедительную визуальную историю.</h2>
+            <h2 id="about-title">Превращаю идеи в интерьерные визуализации.</h2>
             <p>
               Я работаю с интерьерными дизайнерами, архитектурными бюро и частными заказчиками.
               Для меня важна не просто красивая картинка, а решение: показать масштаб,
@@ -241,7 +233,7 @@ function App() {
       </main>
 
       <footer className="footer">
-        <span>Polina Tiurina</span>
+        <span>Полина Тюрина</span>
         <span>Портфолио</span>
       </footer>
     </>
