@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from "react";
 import HeroScene from "./components/HeroScene.jsx";
-
+import Polya from "../assets/about/avatar.jpg"
 const projects = [
   {
     id: "quiet-residence",
@@ -57,9 +57,9 @@ const stats = [
 ];
 
 const expertise = [
-  ["Сильные стороны", "композиция, свет, материалы, фотореализм"],
-  ["Форматы", "рендеры, close-up, mood shots, визуализации для продаж"],
-  ["Софт", "3ds Max, Corona Renderer, Photoshop, D5 Render"],
+  ["Сильные стороны", "Композиция, свет, материалы, фотореализм"],
+  ["Форматы", "Рендеры, close-up, mood shots, визуализации для продаж"],
+  ["Софт", "3ds Max, Corona Renderer, V-Ray, Archicad, Revit, SketchUp, AutoCAD, Lumen, Photoshop"],
 ];
 
 const processSteps = [
@@ -176,12 +176,12 @@ function App() {
         <section id="about" className="about section" aria-labelledby="about-title">
           <div className="portrait-panel reveal is-visible">
             <img
-              src="https://images.unsplash.com/photo-1618220179428-22790b461013?auto=format&fit=crop&w=1200&q=85"
+              src={Polya}
               alt="Фрагмент интерьерного мудборда с материалами и тканями"
             />
           </div>
           <div className="about-copy reveal is-visible">
-            <p className="section-kicker">About me</p>
+            <p className="section-kicker">Обо мне</p>
             <h2 id="about-title">Я перевожу чертежи, референсы и настроение в убедительную визуальную историю.</h2>
             <p>
               Я работаю с интерьерными дизайнерами, архитектурными бюро и частными заказчиками.
