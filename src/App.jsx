@@ -2,51 +2,95 @@ import React, { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import HeroScene from "./components/HeroScene.jsx";
 import Polya from "../assets/about/avatar.jpg";
+import Sigar from "../assets/projects/sigar/sigarny_klub_podsvetka/podsvet9.jpg";
+import OfficeOne from "../assets/projects/ofis/ofic3.jpg";
+import ZK9 from "../assets/projects/ZK9/zhk9_render_kukhnya-gostinnaya_2026g/9.png";
+import Mytna from "../assets/projects/Мытная/РЕНДЕР/spal3.jpg";
+import Archyz from "../assets/projects/Arkhyz/spa3.jpg";
+import Socialistic from "../assets/projects/Sotsialisticheskaya/gostin5.jpg";
+import Krasno from "../assets/projects/Dizayn_proekt_ofisa_prodazh_na_Krasnoarmeyskoy/7.jpg";
+import Shaht from "../assets/projects/Proekt_ofis_Shakhty/14.jpg";
 import { motion } from "framer-motion";
 const projects = [
   {
-    id: "quiet-residence",
+    id: "club",
+    category: "public",
+    label: "Общественный клуб",
+    title: "Сигарный клуб Чнибалаянц Кировский",
+    description:
+      "Современная классика, благородные материалы, теплое интерьерное освещение.",
+    image: Sigar,
+    alt: "Сигарный клуб",
+  },
+  {
+    id: "Mytna",
     category: "residential",
-    label: "Жилая визуализация",
-    title: "Quiet Residence",
+    label: "Интерьер квартиры",
+    title: "Проект интерьера квартиры на ул. Мытная",
     description:
-      "Теплый минимализм, натуральный камень, мягкие дневные сценарии.",
-    image:
-      "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1400&q=85",
-    alt: "Светлая гостиная с камином и мягкой мебелью",
+      "Современная эстетика с элементами ар-деко, акцентные текстуры и дизайнерское освещение.",
+    image: Mytna,
+    alt: "Интерьер квартиры на ул. Мытная",
   },
   {
-    id: "marble-suite",
+    id: "office-one",
     category: "commercial",
-    label: "Бутик-апартаменты",
-    title: "Marble Suite",
+    label: "Офисное пространство",
+    title: "Проект офисного пространства в г. Краснодар",
     description:
-      "Контрастный рендер для презентации инвесторам и каталога продаж.",
-    image:
-      "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1400&q=85",
-    alt: "Современный интерьер кухни и обеденной зоны",
+      "Фотореалистичный рендер с акцентом на деловую атмосферу, комфорт и статус.",
+    image: OfficeOne,
+    alt: "Офисное пространство",
   },
   {
-    id: "soft-horizon",
+    id: "Social",
     category: "residential",
-    label: "Спальня",
-    title: "Soft Horizon",
+    label: "Интерьер квартиры",
+    title: "Проект интерьера квартиры на ул. Социалистическая",
     description:
-      "Сцена для согласования мебели, текстиля и вечернего освещения.",
-    image:
-      "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1400&q=85",
-    alt: "Спокойная современная спальня в бежевых оттенках",
+      "Современное жилое пространство, светлые древесные фактуры, лаконичные формы и теплые акценты.",
+    image: Socialistic,
+    alt: "Интерьер квартиры на ул. Социалистическая",
   },
   {
-    id: "atelier-lounge",
-    category: "commercial",
-    label: "HoReCa",
-    title: "Atelier Lounge",
+    id: "gostin",
+    category: "public",
+    label: "Гостиница",
+    title: "Архыз Гостиница Романтик APRES-SKI",
     description:
-      "Камерное пространство с акцентом на материал, свет и посадку гостей.",
-    image:
-      "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1400&q=85",
-    alt: "Премиальный интерьер с панорамными окнами",
+      "Современное wellness-пространство, натуральные материалы, тактильные поверхности и деликатное освещение.",
+    image: Archyz,
+    alt: "Гостиница",
+  },
+  {
+    id: "office-three",
+    category: "commercial",
+    label: "Офисное пространство",
+    title: "Проект офисного пространства в г. Шахты",
+    description:
+      "Детализированная визуализация для демонстрации эргономики, гибкости и эффективности офисного пространства.",
+    image: Shaht,
+    alt: "Офисное пространство",
+  },
+  {
+    id: "Kotelnik",
+    category: "residential",
+    label: "Интерьер квартиры",
+    title: "Проект интерьера квартиры в ЖК9 Котельники",
+    description:
+      "Фотореалистичная визуализация с акцентом на комфорт, эстетику и функциональность пространства.",
+    image: ZK9,
+    alt: "Интерьер квартиры в ЖК9 Котельники",
+  },
+  {
+    id: "office-two",
+    category: "commercial",
+    label: "Офисное пространство",
+    title: "Проект офисного пространства на Красноармейской",
+    description:
+      "Лаконичный бизнес-интерьер, благородная цветовая палитра и выразительная архитектура.",
+    image: Krasno,
+    alt: "Офисное пространство",
   },
 ];
 
@@ -78,6 +122,7 @@ const filters = [
   { id: "all", label: "Все" },
   { id: "residential", label: "Жилые" },
   { id: "commercial", label: "Коммерция" },
+  { id: "public", label: "Публичные" },
 ];
 
 const stats = [
