@@ -402,7 +402,7 @@ function App() {
             </a>
             <a href="tel:+79990000000">+7 988 946 87 30</a>
             <a
-              href="https://t.me/@Polinnnnnnnnnnnnnnnnnnnnnnna"
+              href="https://t.me/Polinnnnnnnnnnnnnnnnnnnnnnna"
               target="_blank"
               rel="noreferrer"
             >
